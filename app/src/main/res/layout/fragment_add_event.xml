@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="false"
+    android:background="@color/backgroundColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/addEventBigLinearLayout"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/tabLayoutBackgroundColor"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/noButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/tabLayoutBackgroundColor"
+                android:src="@drawable/ic_baseline_close_48">
+            </ImageButton>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/AddEventText"
+                android:textColor="@color/tabUnselectedColor"
+                android:textSize="25sp"
+                android:layout_marginHorizontal="75dp"
+                android:layout_marginVertical="4dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:layout_gravity="center">
+            </TextView>
+
+            <ImageButton
+                android:id="@+id/yesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:background="@color/tabLayoutBackgroundColor"
+                android:src="@drawable/ic_baseline_check_48">
+
+            </ImageButton>
+
+        </LinearLayout>
+
+
+        <EditText
+            android:id="@+id/titleEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/addevent_item_border_unselected"
+            android:layout_marginVertical="15dp"
+            android:layout_marginHorizontal="10dp"
+            android:textColor="@color/tabUnselectedColor"
+            android:textSize="22sp"
+            android:fontFamily="@font/roboto"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:hint="@string/TitleAddEvent"
+            android:textColorHint="@color/hintColor"
+            android:gravity="top|start">
+        </EditText>
+
+        <EditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="123dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="15dp"
+            android:background="@drawable/addevent_item_border_unselected"
+            android:gravity="top|start"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/DescriptionAddEvent"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:textColor="@color/tabUnselectedColor"
+            android:textColorHint="@color/hintColor"
+            android:textSize="22sp">
+        </EditText>
+
+        <LinearLayout
+            android:id="@+id/StartTimeLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="15dp"
+            android:orientation="horizontal"
+            android:background="@drawable/addevent_item_border_unselected">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/StartTimeTextView"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/StartTimeAddEvent"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="10dp"
+                android:gravity="center|start"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="5dp">
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/ShowWhenTimeTextView"
+                android:textSize="18sp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="10dp"
+                android:gravity="center|end"
+                android:layout_marginVertical="3dp"
+                android:layout_marginHorizontal="4dp"
+                android:hint="@string/SelectTimeHint"
+                android:textColorHint="@color/hintColor">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/HasRepeatTimeLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="15dp"
+            android:orientation="vertical"
+            android:background="@drawable/addevent_item_border_unselected">
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/HasRepeatTimeCheckBox"
+                android:text="@string/HasRepeatTimeText"
+                android:textSize="20sp"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="22dp"
+                android:gravity="center|start"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_gravity="center"
+                android:buttonTint="@color/tabUnselectedColor"
+                android:background="@drawable/addevent_item_border_unselected">
+            </CheckBox>
+
+            <LinearLayout
+                android:id="@+id/HasRepeatTimePropertiesLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="4dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/repeatTimeLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/addevent_item_border_unselected"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/RepeatTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center|start"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/RepeatText"
+                        android:textColor="@color/tabUnselectedColor"
+                        android:textSize="20sp"/>
+
+                    <Spinner
+                        android:id="@+id/RepeatSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/style_spinner"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/EndTimeLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:background="@drawable/addevent_item_border_unselected"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/EndTimeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="4dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center|start"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/EndTimeAddEvent"
+                        android:textColor="@color/tabUnselectedColor"
+                        android:textSize="20sp">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/ShowEndTimeTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginEnd="5dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="center|end"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="8dp"
+                        android:textColor="@color/tabUnselectedColor"
+                        android:textSize="18sp"
+                        android:hint="@string/SelectTimeHint"
+                        android:textColorHint="@color/hintColor">
+                    </TextView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/SelectDaysLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/addevent_item_border_unselected"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp">
+
+            <TextView
+                android:id="@+id/SelectDayTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:gravity="center|start"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="12dp"
+                android:layout_marginVertical="4dp"
+                android:text="@string/RepeatDaysText"
+                android:textColor="@color/tabUnselectedColor"
+                android:textSize="20sp">
+            </TextView>
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/SelectRepeatDaysTextView"
+                android:hint="@string/SelectDayHint"
+                android:padding="12dp"
+                android:textColorHint="@color/hintColor"
+                android:textSize="18sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="6dp"
+                android:gravity="center|end"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/tabUnselectedColor"
+                android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

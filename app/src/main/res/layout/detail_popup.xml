@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/style_popup"
+    android:orientation="vertical"
+    android:layout_gravity="center">
+
+    <FrameLayout
+        android:id="@+id/detail_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/normal_detail_banner">
+
+        <TextView
+            android:id="@+id/closeButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:textColor="@color/tabUnselectedColor"
+            android:text="X"
+            android:textStyle="bold"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:layout_margin="5dp"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/detailTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/tabUnselectedColor"
+        android:text="Title"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:layout_marginHorizontal="20dp"
+        android:padding="5dp"/>
+
+    <TextView
+        android:id="@+id/detailDescriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/tabUnselectedColor"
+        android:text="Description"
+        android:textStyle="normal"
+        android:textSize="18sp"
+        android:gravity="fill"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp"
+        android:padding="8dp"
+        android:background="@drawable/addevent_item_border_selected"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/tabUnselectedColor"
+            android:text="@string/WhenDetail"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginEnd="3dp"/>
+
+        <TextView
+            android:id="@+id/detailWhenTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/addevent_item_border_selected"
+            android:textColor="@color/tabUnselectedColor"
+            android:text="When Time"
+            android:textStyle="normal"
+            android:padding="8dp"
+            android:textSize="18sp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/hasRepeatTimeDetailLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/tabUnselectedColor"
+                android:text="@string/EveryDetail"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginEnd="4dp"/>
+
+            <TextView
+                android:id="@+id/detailEveryTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/addevent_item_border_selected"
+                android:textColor="@color/tabUnselectedColor"
+                android:text="Repeat Time"
+                android:textStyle="normal"
+                android:padding="8dp"
+                android:textSize="18sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/tabUnselectedColor"
+                android:text="@string/EndDetail"
+                android:textStyle="bold"
+                android:padding="8dp"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginEnd="18dp"/>
+
+            <TextView
+                android:id="@+id/detailEndTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/addevent_item_border_selected"
+                android:textColor="@color/tabUnselectedColor"
+                android:text="End Time"
+                android:textStyle="normal"
+                android:padding="8dp"
+                android:textSize="18sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="15dp"
+        android:stretchColumns="*">
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/detailMondayTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Monday"
+                android:textSize="18sp"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="8dp"
+                android:gravity="center"
+                android:background="@drawable/addevent_item_border_selected"
+                android:layout_column="0"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"/>
+
+            <TextView
+                android:id="@+id/detailFridayTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Friday"
+                android:textSize="18sp"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="8dp"
+                android:gravity="center"
+                android:background="@drawable/addevent_item_border_selected"
+                android:layout_column="1"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/detailTuesdayTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Tuesday"
+                android:textSize="18sp"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="8dp"
+                android:gravity="center"
+                android:background="@drawable/addevent_item_border_selected"
+                android:layout_column="0"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"/>
+
+            <TextView
+                android:id="@+id/detailSaturdayTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Saturday"
+                android:textSize="18sp"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="8dp"
+                android:gravity="center"
+                android:background="@drawable/addevent_item_border_selected"
+                android:layout_column="1"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/detailWednesdayTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Wednesday"
+                android:textSize="18sp"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="8dp"
+                android:gravity="center"
+                android:background="@drawable/addevent_item_border_selected"
+                android:layout_column="0"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"/>
+
+            <TextView
+                android:id="@+id/detailSundayTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Sunday"
+                android:textSize="18sp"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="8dp"
+                android:gravity="center"
+                android:background="@drawable/addevent_item_border_selected"
+                android:layout_column="1"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/detailThursdayTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/Thursday"
+                android:textSize="18sp"
+                android:textColor="@color/tabUnselectedColor"
+                android:paddingVertical="8dp"
+                android:gravity="center"
+                android:background="@drawable/addevent_item_border_selected"
+                android:layout_column="0"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginVertical="5dp"/>
+        </TableRow>
+    </TableLayout>
+
+
+</LinearLayout>

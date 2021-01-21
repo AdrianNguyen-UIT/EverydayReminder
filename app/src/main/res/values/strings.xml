@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">EverydayReminder</string>
+
+    <string name="TodayTabText">Today Events</string>
+    <string name="PlansTabText">Plans</string>
+    <string name="OverText">OVER</string>
+    <string name="NextText">NEXT</string>
+    <string name="UpcomingText">UPCOMING</string>
+    <string name="AddEventText">ADD EVENT</string>
+    <string name="EditEventText">EDIT EVENT</string>
+    <string name="TitleAddEvent">Title</string>
+    <string name="DescriptionAddEvent">Description</string>
+    <string name="StartTimeAddEvent">When</string>
+    <string name="EndTimeAddEvent">End</string>
+    <string name="HasRepeatTimeText">Has Repeat Time</string>
+    <string name="RepeatText">Every</string>
+    <string name="RepeatDaysText">Day(s)</string>
+    <string name="SelectDayHint">Select Day(s)</string>
+    <string name="SelectTimeHint">Select Time</string>
+
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
+
+    <string name="WhenDetail">When</string>
+    <string name="EveryDetail">Every</string>
+    <string name="EndDetail">End</string>
+</resources>

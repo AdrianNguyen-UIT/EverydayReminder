@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="tabSelectedColor">#FF4CAF50</color>
+    <color name="tabLayoutBackgroundColor">#FF6A6A6A</color>
+    <color name="tabUnselectedColor">#FFFFFFFF</color>
+    <color name="backgroundColor">#FF2B2B2B</color>
+    <color name="overCardBackgroundColor">#874444</color>
+    <color name="nextCardBackgroundColor">#638C34</color>
+    <color name="upcomingCardBackgroundColor">#957C30</color>
+    <color name="normalCardBackgroundColor">#6E518F</color>
+    <color name="addButtonBackgroundColor">#51CA56</color>
+    <color name="spinnerBackgroundColor">#676767</color>
+    <color name="itemSpinnerBackgroundColor">#545455</color>
+    <color name="hintColor">#4A000000</color>
+    <color name="editSwipeBackgroundColor">#7DC825</color>
+    <color name="deleteSwipeBackgroundColor">#E1254A</color>
+    <color name="popupBackgroundColor">#2F333F</color>
+    <color name="notificationOn">#CFDA5F</color>
+    <color name="notificationOff">#C64319</color>
+</resources>
