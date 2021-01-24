@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp.Model;
+package com.example.everydayreminderapp.Database.Model;
 
 public class RepeatTimeModel {
     private int id;

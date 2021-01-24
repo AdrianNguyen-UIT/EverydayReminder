@@ -1,6 +1,5 @@
-package com.example.everydayreminderapp.Model;
+package com.example.everydayreminderapp.Database.Model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventModel {

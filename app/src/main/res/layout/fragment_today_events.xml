@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:background="@color/backgroundColor"
             android:orientation="vertical"
-            tools:context=".TodayEventsFragment">
+            tools:context=".Presentation.TodayEventsFragment">
 
             <LinearLayout
                 android:id="@+id/nextConstraintLayout"

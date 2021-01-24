@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp.DialogFragment;
+package com.example.everydayreminderapp.Presentation.DialogFragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,29 +23,28 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDialog;
 import androidx.fragment.app.DialogFragment;
 
-import android.text.format.DateFormat;
-import android.widget.Toast;
-
 import com.example.everydayreminderapp.Database.DatabaseHelper;
-import com.example.everydayreminderapp.Model.DayOfWeekModel;
-import com.example.everydayreminderapp.Model.EventModel;
-import com.example.everydayreminderapp.Model.RepeatTimeModel;
+import com.example.everydayreminderapp.Database.Model.DayOfWeekModel;
+import com.example.everydayreminderapp.Database.Model.EventModel;
+import com.example.everydayreminderapp.Database.Model.RepeatTimeModel;
 import com.example.everydayreminderapp.R;
 
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class AddEventDialogFragment extends DialogFragment {
+public class EditEventDialogFragment extends DialogFragment {
     private int startHour;
     private int startMinute;
     private int endHour;
@@ -55,14 +55,20 @@ public class AddEventDialogFragment extends DialogFragment {
     private CheckBox hasRepeatTimeCheckBox;
     private TextView endTimeTextView;
     private ArrayList<Integer> dayList;
-    EventModel eventModel;
+    private EventModel eventModel;
+    private DateTimeFormatter formatter;
 
+    public EditEventDialogFragment(EventModel eventModel) {
+        this.eventModel = eventModel;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_event, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
 
         final DatabaseHelper databaseHelper = new DatabaseHelper(requireContext());
-        eventModel = new EventModel();
+        formatter = DateTimeFormatter.ofPattern("hh:mm a");
 
         //titleEditText
         {
@@ -82,6 +88,8 @@ public class AddEventDialogFragment extends DialogFragment {
                     }
                 }
             });
+            titleEditText.setText(eventModel.getTitle());
+            titleEditText.setBackgroundResource(R.drawable.addevent_item_border_selected);
         }
 
         //descriptionEditText
@@ -102,6 +110,8 @@ public class AddEventDialogFragment extends DialogFragment {
                     }
                 }
             });
+            descriptionEditText.setText(eventModel.getDescription());
+            descriptionEditText.setBackgroundResource(R.drawable.addevent_item_border_selected);
         }
 
         //startTimeLinearLayout
@@ -113,9 +123,8 @@ public class AddEventDialogFragment extends DialogFragment {
                 @Override
                 public void onClick(View v) {
                     final Calendar calendar = Calendar.getInstance();
-                    int HOUR = calendar.get(Calendar.HOUR);
-                    int MINUTE = calendar.get(Calendar.MINUTE);
                     boolean is24HourFormat = DateFormat.is24HourFormat(getContext());
+                    LocalTime when = LocalTime.parse(eventModel.getWhen(), formatter);
 
                     TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
                         @Override
@@ -127,7 +136,7 @@ public class AddEventDialogFragment extends DialogFragment {
 
                             whenTimeTextView.setText(DateFormat.format("hh:mm aa", calendar));
                         }
-                    }, HOUR, MINUTE, is24HourFormat);
+                    }, when.getHour(), when.getMinute(), is24HourFormat);
 
                     timePickerDialog.show();
                 }
@@ -149,6 +158,8 @@ public class AddEventDialogFragment extends DialogFragment {
                     startTimeLinearLayout.setBackgroundResource(R.drawable.addevent_item_border_selected);
                 }
             });
+
+            whenTimeTextView.setText(eventModel.getWhen());
         }
 
         //hasRepeatTimeLinearLayout
@@ -169,6 +180,7 @@ public class AddEventDialogFragment extends DialogFragment {
                     }
                 }
             });
+            hasRepeatTimeCheckBox.setChecked(eventModel.getHasRepeatTime());
         }
 
         //endTimeLinearLayout
@@ -181,6 +193,12 @@ public class AddEventDialogFragment extends DialogFragment {
                     int HOUR = calendar.get(Calendar.HOUR);
                     int MINUTE = calendar.get(Calendar.MINUTE);
                     boolean is24HourFormat = DateFormat.is24HourFormat(getContext());
+
+                    if (hasRepeatTimeCheckBox.isChecked()) {
+                        LocalTime end = LocalTime.parse(eventModel.getEnd(), formatter);
+                        HOUR = end.getHour();
+                        MINUTE = end.getMinute();
+                    }
 
                     TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(), new TimePickerDialog.OnTimeSetListener() {
                         @Override
@@ -197,6 +215,9 @@ public class AddEventDialogFragment extends DialogFragment {
                 }
             });
 
+            if (hasRepeatTimeCheckBox.isChecked()) {
+                endTimeTextView.setText(eventModel.getEnd());
+            }
         }
 
         //RepeatTimeSpinner
@@ -224,11 +245,39 @@ public class AddEventDialogFragment extends DialogFragment {
 
                 }
             });
+
+            if (hasRepeatTimeCheckBox.isChecked()) {
+                repeatSpinner.setSelection(eventModel.getRepeatTimeId() - 1);
+            }
         }
 
         //SelectRepeatDaysTextView
         {
             final TextView selectRepeatDaysTextView = view.findViewById(R.id.SelectRepeatDaysTextView);
+            final LinearLayout selectDaysLinearLayout = view.findViewById(R.id.SelectDaysLinearLayout);
+
+            selectRepeatDaysTextView.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (s.length() != 0) {
+                        selectDaysLinearLayout.setBackgroundResource(R.drawable.addevent_item_border_selected);
+                    }
+                    else {
+                        selectDaysLinearLayout.setBackgroundResource(R.drawable.addevent_item_border_unselected);
+                    }
+                }
+            });
+
             dayList = new ArrayList<>();
 
             List<DayOfWeekModel> dayOfWeekModelList = databaseHelper.GetAllDayOfWeek();
@@ -238,6 +287,11 @@ public class AddEventDialogFragment extends DialogFragment {
                 dayArray[index] = dayOfWeekModelList.get(index).getName();
             }
             final boolean[] selectedDay = new boolean[dayArray.length];
+
+            for (DayOfWeekModel dow : eventModel.getRepeatDaysList()) {
+                dayList.add(dow.getId() - 1);
+                selectedDay[dow.getId() - 1] = true;
+            }
 
             selectRepeatDaysTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -300,29 +354,16 @@ public class AddEventDialogFragment extends DialogFragment {
                 }
             });
 
-            final LinearLayout selectDaysLinearLayout = view.findViewById(R.id.SelectDaysLinearLayout);
+            StringBuilder stringBuilder = new StringBuilder();
 
-            selectRepeatDaysTextView.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            for (int index = 0; index < dayList.size(); ++index) {
+                stringBuilder.append(dayArray[dayList.get(index)]);
 
+                if (index != dayList.size() - 1) {
+                    stringBuilder.append(", ");
                 }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-                    if (s.length() != 0) {
-                        selectDaysLinearLayout.setBackgroundResource(R.drawable.addevent_item_border_selected);
-                    }
-                    else {
-                        selectDaysLinearLayout.setBackgroundResource(R.drawable.addevent_item_border_unselected);
-                    }
-                }
-            });
+            }
+            selectRepeatDaysTextView.setText(stringBuilder.toString());
         }
 
         //yesButton
@@ -351,9 +392,9 @@ public class AddEventDialogFragment extends DialogFragment {
                     }
                     eventModel.setRepeatDaysList(dayOfWeekModels);
 
-                    databaseHelper.InsertEvent(eventModel);
+                    databaseHelper.UpdateEvent(eventModel);
 
-                    listener.refresh();
+                    listener.editRefresh();
 
                     dismiss();
                 }
@@ -366,6 +407,7 @@ public class AddEventDialogFragment extends DialogFragment {
             noButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    listener.cancelRefresh();
                     dismiss();
                 }
             });
@@ -402,17 +444,18 @@ public class AddEventDialogFragment extends DialogFragment {
     }
 
     //listener
-    public interface OnEventAddedListener {
-        public void refresh();
+    public interface OnEventEditedListener {
+        public void cancelRefresh();
+        public void editRefresh();
     }
 
-    private OnEventAddedListener listener;
+    private OnEventEditedListener listener;
 
-    public void AddOnEventAddedListener(OnEventAddedListener listener) {
+    public void AddOnEventEditedListener(OnEventEditedListener listener) {
         this.listener = listener;
     }
 
-    public void RemoveOnEventAddedListener() {
+    public void RemoveOnEventEditedListener() {
         this.listener = null;
     }
 

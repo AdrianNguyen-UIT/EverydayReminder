@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp.Adapter;
+package com.example.everydayreminderapp.Presentation.Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

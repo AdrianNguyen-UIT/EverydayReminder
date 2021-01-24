@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp.Model;
+package com.example.everydayreminderapp.Database.Model;
 
 public class DayOfWeekModel {
     private int id;

@@ -4,15 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.everydayreminderapp.MainActivity;
-import com.example.everydayreminderapp.Model.DayOfWeekModel;
-import com.example.everydayreminderapp.Model.EventModel;
-import com.example.everydayreminderapp.Model.RepeatTimeModel;
+import com.example.everydayreminderapp.Database.Model.DayOfWeekModel;
+import com.example.everydayreminderapp.Database.Model.EventModel;
+import com.example.everydayreminderapp.Database.Model.RepeatTimeModel;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 

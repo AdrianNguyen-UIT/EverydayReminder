@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp;
+package com.example.everydayreminderapp.Utility;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -10,6 +10,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+
+import com.example.everydayreminderapp.R;
 
 public class NotificationHelper extends ContextWrapper {
     public NotificationHelper(Context base) {

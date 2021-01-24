@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp.DialogFragment;
+package com.example.everydayreminderapp.Presentation.DialogFragment;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,9 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.everydayreminderapp.Adapter.EventRecycleViewAdapter;
-import com.example.everydayreminderapp.Model.DayOfWeekModel;
-import com.example.everydayreminderapp.Model.EventModel;
+import com.example.everydayreminderapp.Presentation.Adapter.EventRecycleViewAdapter;
+import com.example.everydayreminderapp.Database.Model.DayOfWeekModel;
+import com.example.everydayreminderapp.Database.Model.EventModel;
 import com.example.everydayreminderapp.R;
 
 import java.util.Objects;

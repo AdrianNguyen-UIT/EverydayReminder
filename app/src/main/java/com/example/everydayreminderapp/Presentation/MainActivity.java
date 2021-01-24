@@ -1,24 +1,18 @@
-package com.example.everydayreminderapp;
+package com.example.everydayreminderapp.Presentation;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 
-import com.example.everydayreminderapp.Adapter.MainAdapter;
-import com.example.everydayreminderapp.Database.DatabaseHelper;
-import com.example.everydayreminderapp.Model.EventModel;
+import com.example.everydayreminderapp.Presentation.Adapter.MainAdapter;
+import com.example.everydayreminderapp.R;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;

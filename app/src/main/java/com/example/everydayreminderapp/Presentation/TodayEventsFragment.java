@@ -1,13 +1,16 @@
-package com.example.everydayreminderapp;
+package com.example.everydayreminderapp.Presentation;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
@@ -15,18 +18,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.format.DateFormat;
-import android.util.EventLog;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TimePicker;
-
-import com.example.everydayreminderapp.Adapter.EventRecycleViewAdapter;
 import com.example.everydayreminderapp.Database.DatabaseHelper;
-import com.example.everydayreminderapp.Model.EventModel;
+import com.example.everydayreminderapp.Database.Model.EventModel;
+import com.example.everydayreminderapp.Presentation.Adapter.EventRecycleViewAdapter;
+import com.example.everydayreminderapp.R;
+import com.example.everydayreminderapp.Utility.EventHandler;
+import com.example.everydayreminderapp.Utility.ReminderBroadcast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.DayOfWeek;
@@ -42,7 +39,7 @@ import java.util.List;
  * create an instance of this fragment.
  */
 @RequiresApi(api = Build.VERSION_CODES.O)
-public class TodayEventsFragment extends Fragment implements PlansFragment.OnCreateAddEventDialogListener, ReminderBroadcast.OnNotifyListener{
+public class TodayEventsFragment extends Fragment implements PlansFragment.OnCreateAddEventDialogListener, ReminderBroadcast.OnNotifyListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";

@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp;
+package com.example.everydayreminderapp.Utility;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -8,7 +8,9 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 
-import com.example.everydayreminderapp.Model.EventModel;
+import com.example.everydayreminderapp.Database.Model.EventModel;
+import com.example.everydayreminderapp.Utility.EventHandler;
+import com.example.everydayreminderapp.Utility.NotificationHelper;
 
 import java.util.List;
 

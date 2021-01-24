@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp;
+package com.example.everydayreminderapp.Presentation;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -15,12 +15,14 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.everydayreminderapp.Adapter.EventRecycleViewAdapter;
+import com.example.everydayreminderapp.Presentation.Adapter.EventRecycleViewAdapter;
 import com.example.everydayreminderapp.Database.DatabaseHelper;
-import com.example.everydayreminderapp.DialogFragment.AddEventDialogFragment;
-import com.example.everydayreminderapp.DialogFragment.EditEventDialogFragment;
-import com.example.everydayreminderapp.Model.DayOfWeekModel;
-import com.example.everydayreminderapp.Model.EventModel;
+import com.example.everydayreminderapp.Presentation.DialogFragment.AddEventDialogFragment;
+import com.example.everydayreminderapp.Presentation.DialogFragment.EditEventDialogFragment;
+import com.example.everydayreminderapp.Database.Model.DayOfWeekModel;
+import com.example.everydayreminderapp.Database.Model.EventModel;
+import com.example.everydayreminderapp.R;
+import com.example.everydayreminderapp.Utility.RecyclerItemTouchHelper;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.time.DayOfWeek;

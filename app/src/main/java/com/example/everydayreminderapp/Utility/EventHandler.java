@@ -1,10 +1,10 @@
-package com.example.everydayreminderapp;
+package com.example.everydayreminderapp.Utility;
 
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.everydayreminderapp.Model.EventModel;
+import com.example.everydayreminderapp.Database.Model.EventModel;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +14,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
-class EventHandler {
+public class EventHandler {
 
     private static ArrayList<Integer> notifyIndexList = new ArrayList<>();
     private static List<EventModel> eventModelList = new ArrayList<>();

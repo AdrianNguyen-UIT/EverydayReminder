@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp.Adapter;
+package com.example.everydayreminderapp.Presentation.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.everydayreminderapp.Database.DatabaseHelper;
-import com.example.everydayreminderapp.DialogFragment.DetailPopupDialogFragment;
-import com.example.everydayreminderapp.Model.EventModel;
+import com.example.everydayreminderapp.Presentation.DialogFragment.DetailPopupDialogFragment;
+import com.example.everydayreminderapp.Database.Model.EventModel;
 import com.example.everydayreminderapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class EventRecycleViewAdapter extends RecyclerView.Adapter<EventRecycleViewAdapter.ViewHolder> {
     private List<EventModel> eventList = new ArrayList<>();

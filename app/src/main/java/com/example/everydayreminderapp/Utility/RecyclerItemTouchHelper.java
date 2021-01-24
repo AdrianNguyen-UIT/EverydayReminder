@@ -1,4 +1,4 @@
-package com.example.everydayreminderapp;
+package com.example.everydayreminderapp.Utility;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.everydayreminderapp.Presentation.PlansFragment;
+import com.example.everydayreminderapp.R;
 
 public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     private PlansFragment plansFragment;
