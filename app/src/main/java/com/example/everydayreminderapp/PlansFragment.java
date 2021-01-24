@@ -208,7 +208,6 @@ public class PlansFragment extends Fragment implements AddEventDialogFragment.On
     }
 
     public void DeleteEvent(int position) {
-
         databaseHelper.DeleteEvent(eventModelList.get(position));
         refresh();
     }

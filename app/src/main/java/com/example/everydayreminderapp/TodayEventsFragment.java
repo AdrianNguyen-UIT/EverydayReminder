@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.format.DateFormat;
 import android.util.EventLog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,8 +127,7 @@ public class TodayEventsFragment extends Fragment implements PlansFragment.OnCre
         upcomingRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         upcomingRecyclerView.setAdapter(upcomingEventRecycleViewAdapter);
 
-        RetrieveEventModelListByDay();
-        CreateEventCardView();
+        refreshFrag();
 
         final ImageButton[] buttons = new ImageButton[3];
         buttons[0] = (ImageButton)view.findViewById(R.id.overButton);
@@ -196,13 +196,10 @@ public class TodayEventsFragment extends Fragment implements PlansFragment.OnCre
                 notificationEnable = !notificationEnable;
                 databaseHelper.UpdateNotificationEnable(notificationEnable);
 
-                if (eventModelList.size() == 0)
-                    return;
-
                 if (notificationEnable) {
                     notificationButton.setImageResource(R.drawable.ic_baseline_notification_on_32);
                     notificationButton.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.notificationOn));
-                    StartAlarm();
+                    refreshFrag();
                 }
                 else {
                     notificationButton.setImageResource(R.drawable.ic_baseline_notification_off_32);
@@ -236,17 +233,7 @@ public class TodayEventsFragment extends Fragment implements PlansFragment.OnCre
         int dayOfWeekIndex = dayOfWeek.getValue();
 
         eventModelList = databaseHelper.GetEventByDayOfWeekID(dayOfWeekIndex);
-        EventHandler.setEventModelList(eventModelList);
-
-        if (eventModelList.size() != 0) {
-            if (EventHandler.GetHasNoNextEvent()) {
-                localDate.plusDays(1);
-                dayOfWeek = DayOfWeek.from(localDate);
-                dayOfWeekIndex = dayOfWeek.getValue();
-                eventModelList = databaseHelper.GetEventByDayOfWeekID(dayOfWeekIndex);
-                EventHandler.setEventModelList(eventModelList);
-            }
-        }
+        EventHandler.SetEventModelList(eventModelList);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -254,33 +241,37 @@ public class TodayEventsFragment extends Fragment implements PlansFragment.OnCre
     public void refreshFrag() {
         RetrieveEventModelListByDay();
         CreateEventCardView();
+        NotifyNextEvent();
 
-        if (eventModelList.size() == 0)
-            return;
-
-        if (notificationEnable) {
-            CancelAlarm();
-            StartAlarm();
-        }
     }
 
     public void RegisterOnCreateAddEventDialogListener(PlansFragment fragment) {
         fragment.AddOnEventAddedListenerListener(this);
     }
 
-    private void StartAlarm() {
+    private void StartAlarm(String time, LocalDate date) {
+
+        if (time.length() == 0)
+            return;
+
         AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(requireActivity(), ReminderBroadcast.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(requireActivity(), 0, intent, 0);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
 
-        List<EventModel> nextEventList = EventHandler.GetNextEventList();
-        LocalTime notifyTime = LocalTime.parse(nextEventList.get(0).getNotifyTime(), formatter);
+        LocalTime notifyTime = LocalTime.parse(time, formatter);
 
         Calendar c = Calendar.getInstance();
+
+        c.set(Calendar.YEAR, date.getYear());
+        c.set(Calendar.MONTH, date.getMonthValue() - 1);
+        c.set(Calendar.DAY_OF_MONTH, date.getDayOfMonth());
         c.set(Calendar.HOUR_OF_DAY, notifyTime.getHour());
         c.set(Calendar.MINUTE, notifyTime.getMinute());
         c.set(Calendar.SECOND, 0);
+
+        Log.i("TODAY",  time + " " + c.get(Calendar.DAY_OF_MONTH) + " " + c.get(Calendar.MONTH) + " " + c.get(Calendar.YEAR) + " " + c.get(Calendar.HOUR_OF_DAY) + ":" + c.get(Calendar.MINUTE));
+
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
@@ -294,9 +285,49 @@ public class TodayEventsFragment extends Fragment implements PlansFragment.OnCre
 
     @Override
     public void onNotify() {
+        refreshFrag();
+    }
+
+    private void NotifyNextEvent() {
         CancelAlarm();
-        RetrieveEventModelListByDay();
-        StartAlarm();
-        CreateEventCardView();
+
+        if (!notificationEnable)
+            return;
+
+        LocalDate localDate = LocalDate.now();
+
+        if (EventHandler.GetHasNoNextEvent()) {
+            int dayOfWeekIndex;
+            boolean stop = false;
+            List<EventModel> nextDayEventModelList;
+
+            for (int index = 0; index < 6; ++index) {
+                if (stop) {
+                    break;
+                }
+
+                localDate = localDate.plusDays(1);
+                DayOfWeek dayOfWeek = DayOfWeek.from(localDate);
+                dayOfWeekIndex = dayOfWeek.getValue();
+
+                nextDayEventModelList = databaseHelper.GetEventByDayOfWeekID(dayOfWeekIndex);
+                EventHandler.SetEventModelList(nextDayEventModelList);
+
+                if (nextDayEventModelList.size() != 0) {
+                    stop = true;
+                    StartAlarm(nextDayEventModelList.get(0).getNotifyTime(), localDate);
+                }
+            }
+
+            if (!stop) {
+                if (eventModelList.size() != 0) {
+                    localDate = LocalDate.now();
+                    StartAlarm(eventModelList.get(0).getNotifyTime(), localDate);
+                }
+            }
+        }
+        else {
+                StartAlarm(EventHandler.GetNextEventList().get(0).getNotifyTime(), localDate);
+        }
     }
 }

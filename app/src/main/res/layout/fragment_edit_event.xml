@@ -11,8 +11,7 @@
         android:id="@+id/addEventBigLinearLayout"
         android:orientation="vertical">
 
-
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/tabLayoutBackgroundColor"
@@ -24,7 +23,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:background="@color/tabLayoutBackgroundColor"
-                android:src="@drawable/ic_baseline_close_48"/>
+                android:src="@drawable/ic_baseline_close_48"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="5dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -45,9 +46,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:background="@color/tabLayoutBackgroundColor"
-                android:src="@drawable/ic_baseline_check_48"/>
+                android:src="@drawable/ic_baseline_check_48"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="5dp"/>
 
-        </LinearLayout>
+        </FrameLayout>
 
 
         <EditText

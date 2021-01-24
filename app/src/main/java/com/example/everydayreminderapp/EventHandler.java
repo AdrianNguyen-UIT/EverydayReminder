@@ -21,7 +21,7 @@ class EventHandler {
     private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
     private static boolean hasNoNextEvent = false;
 
-    public static void setEventModelList(List<EventModel> p_EventModelList) {
+    public static void SetEventModelList(List<EventModel> p_EventModelList) {
         eventModelList.clear();
         eventModelList.addAll(p_EventModelList);
 
@@ -129,6 +129,9 @@ class EventHandler {
             for (int index = 0; index < notifyIndexList.get(0); ++index) {
                 overEventList.add(eventModelList.get(index));
             }
+        }
+        else {
+            overEventList.addAll(eventModelList);
         }
 
         return overEventList;
